@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,15 +9,73 @@
         body {
             margin: 0;
             overflow: hidden;
-            background-color: #f0f0f0;
+            background-color: #1a1a2e;
+            font-family: Arial, sans-serif;
         }
-
         canvas {
-            background-color: lightblue; /* Une couleur pour l'arrière-plan du jeu */
+            display: block;
+            background: linear-gradient(to bottom, #87CEEB 0%, #E0F6FF 100%);
+        }
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-size: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            z-index: 10;
+        }
+        #victory {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: gold;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            display: none;
+            z-index: 100;
+        }
+        #victory h1 {
+            font-size: 48px;
+            margin: 0 0 20px 0;
+            animation: glow 1.5s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px gold, 0 0 30px gold; }
+            50% { text-shadow: 0 0 40px gold, 0 0 60px gold; }
+        }
+        #victory button {
+            background: gold;
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        #victory button:hover {
+            background: #ffd700;
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
+    <div id="ui">
+        <div>🎯 Billes: <span id="ballCount">0</span>/<span id="totalBalls">0</span></div>
+        <div style="margin-top: 10px;">❤️ Vies: <span id="lives">3</span></div>
+    </div>
+    
+    <div id="victory">
+        <h1>🎉 VICTOIRE ! 🎉</h1>
+        <p style="font-size: 24px;">Vous avez terminé le jeu !</p>
+        <p style="font-size: 18px;">Billes collectées: <span id="finalScore">0</span></p>
+        <button onclick="location.reload()">Rejouer</button>
+    </div>
+
     <canvas id="gameCanvas"></canvas>
     <script src="game.js"></script>
 </body>
